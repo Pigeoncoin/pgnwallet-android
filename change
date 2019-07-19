@@ -1,0 +1,36 @@
+
+file names: org.myntlabs.pgn change to org/myntlabs/aw
+
+sed -i 's/com\/myntlabs.org\/myntlabs\/aw/g' `grep -rl "com\/ravencoin" .`
+
+find . -name \*org.myntlabs.pgn\* -exec rename 's/org.myntlabs.pgn/org_myntlabs_pgn/' {} ";"
+
+sed -i 's/org.myntlabs.pgn_core/org_myntlabs_pgn_core/g' `grep -rl "org.myntlabs.pgn_core" .`
+
+sed -i 's/org.myntlabs.pgn/org.myntlabs.pgn/g' `grep -rl "com\.ravencoin" .`
+
+sed -i 's/ravencoin.com/myntlabs.org/g' `grep -rl "ravencoin.com" .`
+
+sed -i 's/PgnWallet/PgnWallet/g' `grep -rl "PgnWallet" .`
+find . -name \*PgnWallet\* -exec rename 's/PgnWallet/PgnWallet/' {} ";"
+
+sed -i 's/RvnTransaction/PgnTransaction/g' `grep -rl "RvnTransaction" .`
+find . -name \*RvnTransaction\* -exec rename 's/RvnTransaction/PgnTransaction/' {} ";"
+
+sed -i 's/RvnNode/PgnNode/g' `grep -rl "RvnNode" .`
+
+sed -i 's/PGN/PGN/g' `grep -rl "PGN" .`
+sed -i 's/RAVEN/PGN/g' `grep -rl "RAVEN" .`
+sed -i 's/Raven/Pigeon/g' `grep -rl "Raven" .`
+sed -i 's/rvn/pgn/g' `grep -rl "rvn" .`
+
+
+
+
+
+
+
+
+
+find . -name \*raven\* -exec rename 's/raven/pgn/' {} ";"
+

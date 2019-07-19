@@ -1,0 +1,61 @@
+package org.myntlabs.pgn.presenter.activities.settings;
+
+import android.os.Bundle;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
+
+import org.myntlabs.pgn.R;
+import org.myntlabs.pgn.presenter.activities.util.BRActivity;
+import org.myntlabs.pgn.tools.manager.BRSharedPrefs;
+import org.myntlabs.pgn.presenter.activities.util.ActivityUTILS;
+
+public class NotificationActivity extends BRActivity {
+    private static final String TAG = NotificationActivity.class.getName();
+    private ToggleButton toggleButton;
+    public static boolean appVisible = false;
+    private static NotificationActivity app;
+
+    public static NotificationActivity getApp() {
+        return app;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_notification);
+
+        toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
+        toggleButton.setChecked(BRSharedPrefs.getShowNotification(this));
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                BRSharedPrefs.putShowNotification(NotificationActivity.this, isChecked);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        appVisible = true;
+        app = this;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        appVisible = false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
+    }
+
+}
